@@ -1,5 +1,5 @@
 {
-  "name": "react-repo",
+  "name": "redux-todo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -18,7 +18,8 @@
     "react-dom": "^15.4.1",
     "react-redux": "^5.0.1",
     "redux": "^3.6.0",
-    "redux-promise-middleware": "^4.2.0"
+    "redux-promise-middleware": "^4.2.0",
+    "todomvc-app-css": "^2.0.6"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",
