@@ -3,7 +3,8 @@ import ToDoItem from './ToDoItem';
 
 const ToDoList = ({
   todos,
-  updateTodoStatus
+  updateTodoStatus,
+  deleteTodo
 }) => (
   <div className="main">
     <ul className="todo-list">
@@ -12,7 +13,8 @@ const ToDoList = ({
           key={todo.id}
           completed={todo.completed}
           text={todo.text}
-          updateTodoStatus={updateTodoStatus}
+          updateStatus={() => updateTodoStatus(todo.id)}
+          onDelete={() => deleteTodo(todo.id)}
         />
       )}
     </ul>

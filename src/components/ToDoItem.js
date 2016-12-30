@@ -1,15 +1,17 @@
 import React from 'react';
 
 const ToDoItem = ({
+  id,
   text,
   completed,
-  updateTodoStatus
+  updateStatus,
+  onDelete
 }) => (
   <li className={completed ? 'completed' : ''}>
     <div className="view">
-      <input className="toggle" type="checkbox" defaultChecked={completed} onChange={updateTodoStatus} />
+      <input className="toggle" type="checkbox" defaultChecked={completed} onChange={updateStatus} />
       <label>{text}</label>
-      <button className="destroy" />
+      <button className="destroy" onClick={onDelete}/>
     </div>
   </li>
 );

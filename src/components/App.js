@@ -15,15 +15,29 @@ export default class App extends Component {
     }
   }
 
-  updateTodoStatus(e) {
-    console.log(e)
+  updateTodoStatus(todoId) {
+    this.props.store.dispatch({
+      type: 'TOGGLE_TODO',
+      id: todoId
+    });
+  }
+
+  deleteTodo(todoId) {
+    this.props.store.dispatch({
+      type: 'DELETE_TODO',
+      id: todoId
+    });
   }
 
   render() {
     return (
       <div className='todoapp'>
         <Header onInputKeyPress={this.enterKeyAddTodo.bind(this)} />
-        <ToDoList todos={this.props.todos} updateTodoStatus={this.updateTodoStatus.bind(this)}/>
+        <ToDoList
+          todos={this.props.todos}
+          updateTodoStatus={this.updateTodoStatus.bind(this)}
+          deleteTodo={this.deleteTodo.bind(this)}
+        />
         <Filters count={this.props.todos.length}/>
       </div>
     )
