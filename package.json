@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha --compilers js:babel-core/register",
     "webpack": "./node_modules/.bin/webpack",
     "server": "webpack-dev-server --port 3000 --devtool eval --progress --colors --hot --open --content-base dist",
     "start": "npm run server"
@@ -24,10 +24,12 @@
   "devDependencies": {
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
+    "babel-plugin-transform-object-rest-spread": "^6.20.2",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.16.0",
     "chai": "^3.5.0",
     "chai-enzyme": "^0.6.1",
+    "deep-freeze": "0.0.1",
     "enzyme": "^2.7.0",
     "eslint": "^3.12.2",
     "eslint-config-airbnb": "^13.0.0",
