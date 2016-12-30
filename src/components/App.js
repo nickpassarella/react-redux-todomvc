@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
+import Header from './Header';
 import ToDoList from './ToDoList';
 import Filters from './Filters';
 
+
 export default class App extends Component {
-  handleKeyPress(e) {
+  enterKeyAddTodo(e) {
     if (e.key === 'Enter') {
       this.props.store.dispatch({
         type: 'ADD_TODO',
@@ -13,19 +15,16 @@ export default class App extends Component {
     }
   }
 
+  updateTodoStatus(e) {
+    console.log(e)
+  }
+
   render() {
     return (
       <div className='todoapp'>
-        <header className='header'>
-          <h1>todos</h1>
-          <input
-            className="new-todo"
-            placeholder="What needs to be done?"
-            onKeyPress={this.handleKeyPress.bind(this)}
-            autoFocus />
-        </header>
-        <ToDoList todos={this.props.todos} />
-        <Filters />
+        <Header onInputKeyPress={this.enterKeyAddTodo.bind(this)} />
+        <ToDoList todos={this.props.todos} updateTodoStatus={this.updateTodoStatus.bind(this)}/>
+        <Filters count={this.props.todos.length}/>
       </div>
     )
   }

@@ -4,7 +4,7 @@ export default class Filters extends Component {
   render() {
     return (
       <footer className="footer">
-      <span className="todo-count"><strong>0</strong> item left</span>
+      <span className="todo-count"><strong>{this.props.count}</strong> item left</span>
       <ul className="filters">
         <li>
           <a className="selected" href="#/">All</a>

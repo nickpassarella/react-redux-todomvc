@@ -8,7 +8,12 @@ const ToDoList = ({
   <div className="main">
     <ul className="todo-list">
       {todos.map(todo =>
-        <ToDoItem key={todo.id} completed={todo.completed} text={todo.text} />
+        <ToDoItem
+          key={todo.id}
+          completed={todo.completed}
+          text={todo.text}
+          updateTodoStatus={updateTodoStatus}
+        />
       )}
     </ul>
   </div>

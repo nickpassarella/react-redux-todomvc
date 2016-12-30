@@ -3,11 +3,11 @@ import React from 'react';
 const ToDoItem = ({
   text,
   completed,
-  updateStatus
+  updateTodoStatus
 }) => (
   <li className={completed ? 'completed' : ''}>
     <div className="view">
-      <input className="toggle" type="checkbox" defaultChecked={completed} onChange={updateStatus} />
+      <input className="toggle" type="checkbox" defaultChecked={completed} onChange={updateTodoStatus} />
       <label>{text}</label>
       <button className="destroy" />
     </div>
