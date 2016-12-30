@@ -1,58 +1,23 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
 
 require('todomvc-app-css/index.css');
 
-class App extends Component {
-  render() {
-    return (
-      <section className='todoapp'>
-        <header className='header'>
-          <h1>todos</h1>
-          <input
-            className="new-todo"
-            placeholder="What needs to be done?"
-            autoFocus />
-        </header>
+import reducer from './reducers/todosReducer';
 
-        <section className="main">
-  				<ul className="todo-list">
-  					<li className="completed">
-  						<div className="view">
-  							<input className="toggle" type="checkbox" checked />
-  							<label>Taste JavaScript</label>
-  							<button className="destroy"></button>
-  						</div>
-  						<input className="edit" value="Create a TodoMVC template" />
-  					</li>
-  					<li>
-  						<div className="view">
-  							<input className="toggle" type="checkbox" />
-  							<label>Buy a unicorn</label>
-  							<button className="destroy"></button>
-  						</div>
-  						<input className="edit" value="Rule the web" />
-  					</li>
-  				</ul>
-  			</section>
-          <footer className="footer">
-  				<span className="todo-count"><strong>0</strong> item left</span>
-  				<ul className="filters">
-  					<li>
-  						<a className="selected" href="#/">All</a>
-  					</li>
-  					<li>
-  						<a href="#/active">Active</a>
-  					</li>
-  					<li>
-  						<a href="#/completed">Completed</a>
-  					</li>
-  				</ul>
-  				<button className="clear-completed">Clear completed</button>
-  			</footer>
-      </section>
-    )
-  }
-}
+import App from './components/App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = createStore(reducer);
+const render = () => {
+  ReactDOM.render(
+    <App
+      store={store}
+      todos={store.getState()}
+    />,
+    document.getElementById('root')
+  );
+};
+
+store.subscribe(render);
+render();
