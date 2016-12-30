@@ -23,4 +23,25 @@ describe('Todo Actions -', () => {
       expect(actions.toggleTodo(1)).to.deep.equal(expectedAction);
     });
   });
+
+  describe('deleteTodo', () => {
+    it('returns the proper action', () => {
+      let expectedAction = {
+        type: 'DELETE_TODO',
+        id: 1
+      };
+
+      expect(actions.deleteTodo(1)).to.deep.equal(expectedAction);
+    });
+  });
+
+  describe('deleteCompletedTodos', () => {
+    it('returns the proper action', () => {
+      let expectedAction = {
+        type: 'DELETE_COMPLETED_TODOS'
+      };
+
+      expect(actions.deleteCompletedTodos()).to.deep.equal(expectedAction);
+    });
+  });
 });

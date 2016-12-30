@@ -54,4 +54,31 @@ describe('Todos Reducer', () => {
 
     expect(reducer(beforeState, actions.toggleTodo(1))).to.deep.equal(afterState);
   });
+
+  it('can delete a todo', () => {
+    let beforeState = [
+      { id: 1, text: 'do it!', completed: true },
+      { id: 2, text: 'just do it!', completed: false }
+    ];
+    let afterState = [
+      { id: 2, text: 'just do it!', completed: false }
+    ];
+    deepFreeze(beforeState);
+
+    expect(reducer(beforeState, actions.deleteTodo(1))).to.deep.equal(afterState);
+  });
+
+  it('can clear completed todos', () => {
+    let beforeState = [
+      { id: 1, text: 'do it!', completed: true },
+      { id: 2, text: 'just do it!', completed: true },
+      { id: 3, text: 'don\'t let your dreams be dreams.', completed: false }
+    ];
+    let afterState = [
+      { id: 3, text: 'don\'t let your dreams be dreams.', completed: false }
+    ];
+    deepFreeze(beforeState);
+
+    expect(reducer(beforeState, actions.deleteCompletedTodos())).to.deep.equal(afterState);
+  });
 });
