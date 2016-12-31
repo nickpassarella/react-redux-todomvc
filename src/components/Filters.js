@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Filter from './Filter';
+
 const filterTypes = [
   { type: 'SHOW_ALL', text: 'All' },
   { type: 'SHOW_ACTIVE', text: 'Active' },
