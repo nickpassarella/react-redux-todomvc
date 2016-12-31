@@ -14,8 +14,9 @@ const Filters = ({
   setVisibilityFilter
 }) => (
   <ul className='filters'>
-    {filterTypes.map(filter =>
+    {filterTypes.map((filter, index) =>
       <Filter
+        key={index}
         filter={filter.type}
         setVisibilityFilter={setVisibilityFilter}
         currentFilter={currentVisibilityFilter}
