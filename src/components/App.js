@@ -36,18 +36,21 @@ export default class App extends Component {
   }
 
   render() {
+    let { todos } = this.props;
     return (
       <div className='todoapp'>
         <Header onInputKeyPress={this.enterKeyAddTodo.bind(this)} />
         <ToDoList
-          todos={this.props.todos}
+          todos={todos}
           updateTodoStatus={this.updateTodoStatus.bind(this)}
           deleteTodo={this.deleteTodo.bind(this)}
         />
-        <Filters
-          count={this.props.todos.filter(todo => !todo.completed).length}
-          deleteCompletedTodos={this.deleteCompletedTodos.bind(this)}
-        />
+        { todos.length > 0 &&
+          <Filters
+            todos={todos}
+            deleteCompletedTodos={this.deleteCompletedTodos.bind(this)}
+          />
+        }
       </div>
     )
   }
