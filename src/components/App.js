@@ -56,7 +56,7 @@ export default class App extends Component {
         />
         { todos.length > 0 &&
           <Footer
-            todos={filteredTodos}
+            todos={todos}
             currentVisibilityFilter={filter}
             setVisibilityFilter={this.setVisibilityFilter.bind(this)}
             deleteCompletedTodos={this.deleteCompletedTodos.bind(this)}
