@@ -1,6 +1,11 @@
 import React from 'react';
 
 import Filter from './Filter';
+const filterTypes = [
+  { type: 'SHOW_ALL', text: 'All' },
+  { type: 'SHOW_ACTIVE', text: 'Active' },
+  { type: 'SHOW_COMPLETED', text: 'Completed' }
+];
 
 const Filters = ({
   filter,
@@ -8,27 +13,15 @@ const Filters = ({
   setVisibilityFilter
 }) => (
   <ul className='filters'>
-    <Filter
-      filter='SHOW_ALL'
-      setVisibilityFilter={setVisibilityFilter}
-      currentFilter={currentVisibilityFilter}
-    >
-      All
-    </Filter>
-    <Filter
-      filter='SHOW_ACTIVE'
-      setVisibilityFilter={setVisibilityFilter}
-      currentFilter={currentVisibilityFilter}
-    >
-      Active
-    </Filter>
-    <Filter
-      filter='SHOW_COMPLETED'
-      setVisibilityFilter={setVisibilityFilter}
-      currentFilter={currentVisibilityFilter}
-    >
-      Completed
-    </Filter>
+    {filterTypes.map(filter =>
+      <Filter
+        filter={filter.type}
+        setVisibilityFilter={setVisibilityFilter}
+        currentFilter={currentVisibilityFilter}
+      >
+        {filter.text}
+      </Filter>
+    )}
   </ul>
 );
 
