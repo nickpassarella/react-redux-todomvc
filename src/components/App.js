@@ -29,6 +29,12 @@ export default class App extends Component {
     });
   }
 
+  deleteCompletedTodos() {
+    this.props.store.dispatch({
+      type: 'DELETE_COMPLETED_TODOS'
+    });
+  }
+
   render() {
     return (
       <div className='todoapp'>
@@ -38,7 +44,10 @@ export default class App extends Component {
           updateTodoStatus={this.updateTodoStatus.bind(this)}
           deleteTodo={this.deleteTodo.bind(this)}
         />
-        <Filters count={this.props.todos.length}/>
+        <Filters
+          count={this.props.todos.filter(todo => !todo.completed).length}
+          deleteCompletedTodos={this.deleteCompletedTodos.bind(this)}
+        />
       </div>
     )
   }
