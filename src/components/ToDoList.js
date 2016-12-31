@@ -6,8 +6,8 @@ const ToDoList = ({
   updateTodoStatus,
   deleteTodo
 }) => (
-  <div className="main">
-    <ul className="todo-list">
+  <div className='main'>
+    <ul className='todo-list'>
       {todos.map(todo =>
         <ToDoItem
           key={todo.id}

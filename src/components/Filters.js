@@ -16,25 +16,25 @@ const Filters = ({
   let completeTodosCount = todos.filter(todo => todo.completed).length;
 
   return (
-    <footer className="footer">
-      <span className="todo-count">
+    <footer className='footer'>
+      <span className='todo-count'>
         <strong>{incompleteTodosCount}</strong>
         {incompleteTodosCount === 1 ? ' item' : ' items'} left
       </span>
-      <ul className="filters">
+      <ul className='filters'>
         <li>
-          <a className="selected" href="#/">All</a>
+          <a className='selected' href='#/'>All</a>
         </li>
         <li>
-          <a href="#/active">Active</a>
+          <a href='#/active'>Active</a>
         </li>
         <li>
-          <a href="#/completed">Completed</a>
+          <a href='#/completed'>Completed</a>
         </li>
       </ul>
       { completeTodosCount > 0 &&
         <button
-          className="clear-completed"
+          className='clear-completed'
           onClick={deleteCompletedTodos}
         >
         Clear completed

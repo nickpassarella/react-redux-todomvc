@@ -8,10 +8,10 @@ const ToDoItem = ({
   onDelete
 }) => (
   <li className={completed ? 'completed' : ''}>
-    <div className="view">
-      <input className="toggle" type="checkbox" defaultChecked={completed} onChange={updateStatus} />
+    <div className='view'>
+      <input className='toggle' type='checkbox' defaultChecked={completed} onChange={updateStatus} />
       <label>{text}</label>
-      <button className="destroy" onClick={onDelete}/>
+      <button className='destroy' onClick={onDelete}/>
     </div>
   </li>
 );
