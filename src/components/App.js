@@ -1,53 +1,64 @@
 import React, {Component} from 'react';
 import Header from './Header';
 import ToDoList from './ToDoList';
-import Filters from './Filters';
+import Footer from './Footer';
 
+import * as todoActions from '../actions/todoActions';
+import * as visibilityActions from '../actions/visibilityActions';
+
+const getVisibleTodos = (todos, filter) => {
+  switch (filter) {
+    case 'SHOW_COMPLETED':
+      return todos.filter(todo => todo.completed);
+    case 'SHOW_ACTIVE':
+      return todos.filter(todo => !todo.completed);
+    case 'SHOW_ALL':
+    default:
+      return todos;
+  }
+};
 
 export default class App extends Component {
-  enterKeyAddTodo(e) {
-    if (e.key === 'Enter') {
-      this.props.store.dispatch({
-        type: 'ADD_TODO',
-        text: e.target.value
-      });
-      e.target.value = '';
+  enterKeyAddsTodo(event) {
+    if (event.key === 'Enter') {
+      this.props.store.dispatch(todoActions.addTodo(event.target.value));
+      event.target.value = '';
     }
   }
 
   updateTodoStatus(todoId) {
-    this.props.store.dispatch({
-      type: 'TOGGLE_TODO',
-      id: todoId
-    });
+    this.props.store.dispatch(todoActions.toggleTodo(todoId));
   }
 
   deleteTodo(todoId) {
-    this.props.store.dispatch({
-      type: 'DELETE_TODO',
-      id: todoId
-    });
+    this.props.store.dispatch(todoActions.deleteTodo(todoId));
   }
 
   deleteCompletedTodos() {
-    this.props.store.dispatch({
-      type: 'DELETE_COMPLETED_TODOS'
-    });
+    this.props.store.dispatch(todoActions.deleteCompletedTodos());
+  }
+
+  setVisibilityFilter(filter) {
+    this.props.store.dispatch(visibilityActions.setVisibilityFilter(filter));
   }
 
   render() {
-    let { todos } = this.props;
+    const {todos, filter} = this.props;
+    const filteredTodos = getVisibleTodos(todos, filter);
+
     return (
       <div className='todoapp'>
-        <Header onInputKeyPress={this.enterKeyAddTodo.bind(this)} />
+        <Header onInputKeyPress={this.enterKeyAddsTodo.bind(this)} />
         <ToDoList
-          todos={todos}
+          todos={filteredTodos}
           updateTodoStatus={this.updateTodoStatus.bind(this)}
           deleteTodo={this.deleteTodo.bind(this)}
         />
         { todos.length > 0 &&
-          <Filters
-            todos={todos}
+          <Footer
+            todos={filteredTodos}
+            currentVisibilityFilter={filter}
+            setVisibilityFilter={this.setVisibilityFilter.bind(this)}
             deleteCompletedTodos={this.deleteCompletedTodos.bind(this)}
           />
         }
