@@ -1,23 +1,20 @@
-import React from 'react';
+import { connect } from 'react-redux';
+import FilterLink from './FilterLink';
+import { setVisibilityFilter } from '../actions';
 
-const Filter = ({
-  children,
-  currentFilter,
-  filter,
-  setVisibilityFilter
-}) => (
-  <li>
-    <a
-      className={currentFilter === filter ? 'selected' : ''}
-      href='#'
-      onClick={event => {
-        event.preventDefault();
-        setVisibilityFilter(filter);
-      }}
-    >
-      {children}
-    </a>
-  </li>
-);
+const mapStateToProps = (state) => ({
+  currentFilterState: state.visibilityFilter
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onClick(filter) {
+    dispatch(setVisibilityFilter(filter));
+  }
+});
+
+const Filter = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FilterLink);
 
 export default Filter;

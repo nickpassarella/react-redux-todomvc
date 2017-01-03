@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Filter from './Filter';
 
 const filterTypes = [
@@ -8,18 +7,12 @@ const filterTypes = [
   { type: 'SHOW_COMPLETED', text: 'Completed' }
 ];
 
-const Filters = ({
-  filter,
-  currentVisibilityFilter,
-  setVisibilityFilter
-}) => (
+const FilterList = () => (
   <ul className='filters'>
     {filterTypes.map((filter, index) =>
       <Filter
         key={index}
         filter={filter.type}
-        setVisibilityFilter={setVisibilityFilter}
-        currentFilter={currentVisibilityFilter}
       >
         {filter.text}
       </Filter>
@@ -27,4 +20,4 @@ const Filters = ({
   </ul>
 );
 
-export default Filters;
+export default FilterList;

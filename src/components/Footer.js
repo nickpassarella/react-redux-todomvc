@@ -1,5 +1,5 @@
 import React from 'react';
-import Filters from './Filters';
+import FilterList from './FilterList';
 
 const Footer = ({
   incompleteTodoCount,
@@ -12,10 +12,7 @@ const Footer = ({
       { incompleteTodoCount === 1 ? ' todo ' : ' todos '}
       left
     </span>
-    < Filters
-      currentVisibilityFilter={1}
-      setVisibilityFilter={1}
-    />
+    < FilterList />
     <button
       className='clear-completed'
       onClick={() => clearCompletedTodos()}
