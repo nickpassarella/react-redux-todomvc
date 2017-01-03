@@ -12,7 +12,7 @@ const Header = ({
       placeholder='What needs to be done?'
       onKeyPress={e => {
         if (e.key === 'Enter') {
-          dispatch(addTodo(e.target.value, 1));
+          dispatch(addTodo(e.target.value));
           e.target.value = '';
         }
       }}
