@@ -3,17 +3,17 @@ import TodoItem from './TodoItem';
 
 const TodoList = ({
   todos,
-  updateTodoStatus,
-  deleteTodo
+  onCheckboxToggle,
+  onDelete
 }) => (
   <div className='main'>
     <ul className='todo-list'>
       {todos.map(todo =>
         <TodoItem
-          key={todo.id}
           {...todo}
-          onChange={() => updateTodoStatus(todo.id)}
-          onDelete={() => deleteTodo(todo.id)}
+          key={todo.id}
+          onCheckboxToggle={() => onCheckboxToggle(todo.id)}
+          onDelete={() => onDelete(todo.id)}
         />
       )}
     </ul>

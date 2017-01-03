@@ -41,4 +41,16 @@ const Footer = ({
   );
 };
 
+{ todos.length > 0 &&
+  <Footer
+    todos={todos}
+    currentVisibilityFilter={filter}
+    setVisibilityFilter={filter => {
+      store.dispatch(visibilityActions.setVisibilityFilter(filter));
+    }}
+    deleteCompletedTodos={() => {
+      store.dispatch(todoActions.deleteCompletedTodos());
+    }}
+  />
+}
 export default Footer;
