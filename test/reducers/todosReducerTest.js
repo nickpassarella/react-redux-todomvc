@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import deepFreeze from 'deep-freeze';
-import * as actions from '../../src/actions/todoActions';
+import * as actions from '../../src/actions';
 import reducer from '../../src/reducers/todosReducer';
 
 describe('Todos Reducer', () => {
@@ -13,7 +13,7 @@ describe('Todos Reducer', () => {
     let afterState = [{ id: 1, text: 'do it!', completed: false }];
     deepFreeze(beforeState);
 
-    expect(reducer(beforeState, actions.addTodo('do it!'))).to.deep.equal(afterState);
+    expect(reducer(beforeState, actions.addTodo('do it!', 1))).to.deep.equal(afterState);
   });
 
   it('can add a second todo', () => {
@@ -24,7 +24,7 @@ describe('Todos Reducer', () => {
     ];
     deepFreeze(beforeState);
 
-    expect(reducer(beforeState, actions.addTodo('just do it!'))).to.deep.equal(afterState);
+    expect(reducer(beforeState, actions.addTodo('just do it!', 2))).to.deep.equal(afterState);
   });
 
   it('can toggle an incomplete todo to be completed', () => {

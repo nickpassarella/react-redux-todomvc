@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import deepFreeze from 'deep-freeze';
-import * as actions from '../../src/actions/visibilityActions';
+import * as actions from '../../src/actions';
 import reducer from '../../src/reducers/visibilityFilterReducer';
 
 describe('Visibility Filter Reducer', () => {

@@ -1,8 +1,8 @@
 import { generate } from 'shortid';
 
-export const addTodo = (text, id) => ({
+export const addTodo = (text, id = generate()) => ({
   type: 'ADD_TODO',
-  id: generate(),
+  id,
   text
 });
 

@@ -1,15 +1,26 @@
 import { expect } from 'chai';
-import * as actions from '../../src/actions/todoActions';
+import * as actions from '../../src/actions';
 
 describe('Todo Actions -', () => {
   describe('addTodo', () => {
+
+    it ('should create a unique ID for a todo if no id is passed to the action creator', () => {
+      let action = actions.addTodo('do it!');
+      expect(action).to.be.an('object');
+      expect(action.id).to.be.a('string');
+
+      let secondAction = actions.addTodo('do it again!');
+      expect(action.id).not.to.equal(secondAction.id);
+    });
+
     it('returns the proper action', () => {
       let expectedAction = {
         type: 'ADD_TODO',
+        id: 1,
         text: 'test'
       };
 
-      expect(actions.addTodo('test')).to.deep.equal(expectedAction);
+      expect(actions.addTodo('test', 1)).to.deep.equal(expectedAction);
     });
   });
 
@@ -42,6 +53,19 @@ describe('Todo Actions -', () => {
       };
 
       expect(actions.deleteCompletedTodos()).to.deep.equal(expectedAction);
+    });
+  });
+});
+
+describe('Visibility Actions -', () => {
+  describe('setVisibilityFilter', () => {
+    it('returns the proper action', () => {
+      let expectedAction = {
+        type: 'SET_VISIBILITY_FILTER',
+        filter: 'SHOW_ALL'
+      };
+
+      expect(actions.setVisibilityFilter('SHOW_ALL')).to.deep.equal(expectedAction);
     });
   });
 });
