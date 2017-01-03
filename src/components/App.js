@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Header from './Header';
-import ToDoList from './ToDoList';
+import TodoList from './TodoList';
 import Footer from './Footer';
 
 import * as todoActions from '../actions/todoActions';
@@ -19,47 +19,43 @@ const getVisibleTodos = (todos, filter) => {
 };
 
 export default class App extends Component {
-  enterKeyAddsTodo(event) {
-    if (event.key === 'Enter') {
-      this.props.store.dispatch(todoActions.addTodo(event.target.value));
-      event.target.value = '';
-    }
-  }
-
-  updateTodoStatus(todoId) {
-    this.props.store.dispatch(todoActions.toggleTodo(todoId));
-  }
-
-  deleteTodo(todoId) {
-    this.props.store.dispatch(todoActions.deleteTodo(todoId));
-  }
-
-  deleteCompletedTodos() {
-    this.props.store.dispatch(todoActions.deleteCompletedTodos());
-  }
-
-  setVisibilityFilter(filter) {
-    this.props.store.dispatch(visibilityActions.setVisibilityFilter(filter));
+  constructor(props) {
+    super(props)
+    this.todoCounter = 1;
   }
 
   render() {
-    const {todos, filter} = this.props;
+    const {store, todos, filter} = this.props;
     const filteredTodos = getVisibleTodos(todos, filter);
 
     return (
       <div className='todoapp'>
-        <Header onInputKeyPress={this.enterKeyAddsTodo.bind(this)} />
-        <ToDoList
+        <Header onKeyPress={event => {
+          if (event.key === 'Enter') {
+            store.dispatch(todoActions.addTodo(event.target.value, this.todoCounter++));
+            event.target.value = '';
+          }
+          }}
+        />
+        <TodoList
           todos={filteredTodos}
-          updateTodoStatus={this.updateTodoStatus.bind(this)}
-          deleteTodo={this.deleteTodo.bind(this)}
+          updateTodoStatus={id => {
+            store.dispatch(todoActions.toggleTodo(id));
+          }}
+          deleteTodo={id => {
+            store.dispatch(todoActions.deleteTodo(id));
+          }}
         />
         { todos.length > 0 &&
           <Footer
             todos={todos}
             currentVisibilityFilter={filter}
-            setVisibilityFilter={this.setVisibilityFilter.bind(this)}
-            deleteCompletedTodos={this.deleteCompletedTodos.bind(this)}
+            setVisibilityFilter={filter => {
+              store.dispatch(visibilityActions.setVisibilityFilter(filter));
+            }}
+            deleteCompletedTodos={() => {
+              store.dispatch(todoActions.deleteCompletedTodos());
+            }}
           />
         }
       </div>

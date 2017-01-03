@@ -1,7 +1,7 @@
 import React from 'react';
-import ToDoItem from './ToDoItem';
+import TodoItem from './TodoItem';
 
-const ToDoList = ({
+const TodoList = ({
   todos,
   updateTodoStatus,
   deleteTodo
@@ -9,11 +9,10 @@ const ToDoList = ({
   <div className='main'>
     <ul className='todo-list'>
       {todos.map(todo =>
-        <ToDoItem
+        <TodoItem
           key={todo.id}
-          completed={todo.completed}
-          text={todo.text}
-          updateStatus={() => updateTodoStatus(todo.id)}
+          {...todo}
+          onChange={() => updateTodoStatus(todo.id)}
           onDelete={() => deleteTodo(todo.id)}
         />
       )}
@@ -21,4 +20,4 @@ const ToDoList = ({
   </div>
 );
 
-export default ToDoList;
+export default TodoList;

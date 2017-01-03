@@ -2,9 +2,9 @@ const initialState = [];
 
 let todoCounter = 1;
 
-const newTodo = text => ({
-  text: text,
-  id: todoCounter++,
+const newTodo = (text, id) => ({
+  text,
+  id,
   completed: false
 });
 
@@ -22,7 +22,7 @@ const toggleTodo = (todo, actionId) => {
 export default function todosReducer(state = initialState, action) {
   switch (action.type) {
     case 'ADD_TODO':
-      return [...state, newTodo(action.text)];
+      return [...state, newTodo(action.text, action.id)];
     case 'TOGGLE_TODO':
       return state.map(todo => toggleTodo(todo, action.id));
     case 'DELETE_TODO':

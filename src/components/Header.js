@@ -1,14 +1,14 @@
 import React from 'react';
 
 const Header = ({
-  onInputKeyPress
+  onKeyPress
 }) => (
   <header className='header'>
     <h1>todos</h1>
     <input
       className='new-todo'
       placeholder='What needs to be done?'
-      onKeyPress={onInputKeyPress}
+      onKeyPress={onKeyPress}
       autoFocus />
   </header>
 );
