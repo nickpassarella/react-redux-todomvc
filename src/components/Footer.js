@@ -4,7 +4,8 @@ import FilterList from './FilterList';
 const Footer = ({
   incompleteTodoCount,
   completeTodoCount,
-  clearCompletedTodos
+  clearCompletedTodos,
+  currentFilter
 }) => {
   const componentStyle = {};
   const todoTotal = completeTodoCount + incompleteTodoCount;
@@ -21,7 +22,9 @@ const Footer = ({
         { incompleteTodoCount === 1 ? ' todo ' : ' todos '}
         left
       </span>
-      < FilterList />
+      < FilterList
+        currentFilter={currentFilter}
+      />
       { completeTodoCount > 0 &&
         <button
           className='clear-completed'

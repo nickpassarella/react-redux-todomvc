@@ -9,7 +9,9 @@ const App = ({ params }) => (
     <VisibleTodos
       filter={params.filter || 'all'}
     />
-    <FooterContainer />
+    <FooterContainer
+      filter={params.filter || 'all'}
+    />
   </div>
 );
 

@@ -3,12 +3,12 @@ import { Link } from 'react-router';
 
 const FilterLink = ({
   children,
-  currentFilterState,
+  selected,
   filter
 }) => (
   <li>
     <Link
-      className={currentFilterState === filter ? 'selected' : ''}
+      className={selected ? 'selected' : ''}
       to={filter === 'all' ? '' : filter}
     >
       {children}

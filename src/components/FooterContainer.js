@@ -3,9 +3,10 @@ import { deleteCompletedTodos } from '../actions';
 
 import Footer from './Footer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
   incompleteTodoCount: state.todos.filter(todo => !todo.completed).length,
-  completeTodoCount: state.todos.filter(todo => todo.completed).length
+  completeTodoCount: state.todos.filter(todo => todo.completed).length,
+  currentFilter: ownProps.filter
 });
 
 const mapDispatchToProps = (dispatch) => ({
