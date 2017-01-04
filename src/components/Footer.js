@@ -4,8 +4,7 @@ import FilterList from './FilterList';
 const Footer = ({
   incompleteTodoCount,
   clearCompletedTodos
-}) => {
-  return (
+}) => (
   <footer className='footer'>
     <span className='todo-count'>
       <strong>{incompleteTodoCount}</strong>
@@ -20,6 +19,6 @@ const Footer = ({
     Clear completed
     </button>
   </footer>
-)};
+);
 
 export default Footer;

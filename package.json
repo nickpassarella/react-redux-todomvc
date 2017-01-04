@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register",
     "webpack": "./node_modules/.bin/webpack",
-    "server": "webpack-dev-server --port 3000 --devtool eval --progress --colors --hot --open --content-base dist",
+    "server": "webpack-dev-server --port 3000 --inline --devtool eval --progress --colors --hot --open --content-base dist",
     "start": "npm run server"
   },
   "author": "",

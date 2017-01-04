@@ -3,10 +3,12 @@ import Header from './Header';
 import VisibleTodos from './VisibleTodos';
 import FooterContainer from './FooterContainer';
 
-const App = () => (
+const App = ({ params }) => (
   <div className='todoapp'>
     <Header />
-    <VisibleTodos />
+    <VisibleTodos
+      filter={params.filter || 'all'}
+    />
     <FooterContainer />
   </div>
 );

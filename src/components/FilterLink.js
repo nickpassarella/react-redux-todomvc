@@ -1,22 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const FilterLink = ({
   children,
   currentFilterState,
-  filter,
-  onClick
+  filter
 }) => (
   <li>
-    <a
+    <Link
       className={currentFilterState === filter ? 'selected' : ''}
-      href='#'
-      onClick={event => {
-        event.preventDefault();
-        onClick(filter);
-      }}
+      to={filter === 'all' ? '' : filter}
     >
       {children}
-    </a>
+    </Link>
   </li>
 );
 

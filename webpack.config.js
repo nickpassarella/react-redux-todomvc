@@ -18,6 +18,9 @@ const config = {
       { test: /\.js$/, loaders: ['babel'], exclude: /node_modules/ },
       { test: /\.css$/, loader: "style-loader!css-loader" }
     ]
+  },
+  devServer: {
+    historyApiFallback: true
   }
 }
 

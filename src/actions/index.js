@@ -19,8 +19,3 @@ export const deleteTodo = id => ({
 export const deleteCompletedTodos = () => ({
   type: 'DELETE_COMPLETED_TODOS'
 });
-
-export const setVisibilityFilter = (filter) => ({
-  type: 'SET_VISIBILITY_FILTER',
-  filter
-});
